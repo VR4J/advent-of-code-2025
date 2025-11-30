@@ -21,9 +21,7 @@ object Day01 {
     }
 
     fun runPartOne(input: List<String>): Int {
-        return input
-            .map { it.replace(" ", "") }
-            .sumOf { it.toInt() };
+        return 0
     }
 
     fun runPartTwo(input: List<String>): Int {
