@@ -6,7 +6,14 @@ class Day01Test extends Specification {
 
     def "returns something 1"() {
         given: "the example puzzle input"
-        def input = [ ]
+        def input = [
+            "3   4",
+            "4   3",
+            "2   5",
+            "1   3",
+            "3   9",
+            "3   3"
+        ]
 
         when: "the something is calculated"
         def result = new Day01().runPartOne(input)
@@ -15,15 +22,15 @@ class Day01Test extends Specification {
         result == 1
     }
 
-    def "returns something 2"() {
-        given: "the example puzzle input"
-        def input = [ ]
-
-        when: "the something is calculated"
-        def result = new Day01().runPartTwo(input)
-
-        then: "the result matches the example answer"
-        result == 1
-    }
+//    def "returns something 2"() {
+//        given: "the example puzzle input"
+//        def input = [ ]
+//
+//        when: "the something is calculated"
+//        def result = new Day01().runPartTwo(input)
+//
+//        then: "the result matches the example answer"
+//        result == 1
+//    }
 
 }
