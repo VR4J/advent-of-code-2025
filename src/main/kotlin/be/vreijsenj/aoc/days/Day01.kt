@@ -28,10 +28,12 @@ object Day01 {
             val loops: Int = abs(amount / max)
             val rest: Int = amount % max
 
+            // Perfect loops or starting from zero, cannot cause a click on the last rotation.
             if(rest == 0 || start == 0) {
                 return loops;
             }
 
+            // Check if last rotation causes an additional click.
             if((start + rest) >= max || (start + rest) <= 0)  {
                 return loops + 1
             }
