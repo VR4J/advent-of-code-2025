@@ -6,6 +6,8 @@ import kotlin.time.measureTime
 
 object Day01 {
 
+    val MAX_DIAL_COUNT: Int = 100
+
     data class DialRotation(val amount: Int) {
         companion object {
             @JvmStatic
@@ -22,21 +24,19 @@ object Day01 {
             return (start + amount).mod(max)
         }
 
-        fun clicks(start: Int, max: Int): Pair<Int, Int> {
+        fun clicks(start: Int, max: Int): Int {
             val loops: Int = abs(amount / max)
             val rest: Int = amount % max
 
-            val result = execute(start, max)
-
             if(rest == 0 || start == 0) {
-                return Pair(result, loops)
+                return loops;
             }
 
             if((start + rest) >= max || (start + rest) <= 0)  {
-                return Pair(result, loops + 1)
+                return loops + 1
             }
 
-            return Pair(result, loops)
+            return loops;
         }
     }
 
@@ -63,7 +63,7 @@ object Day01 {
 
         rotations.forEach {
             starts.add(
-                it.execute(starts.last(), 100)
+                it.execute(starts.last(), MAX_DIAL_COUNT)
             )
         }
 
@@ -77,11 +77,13 @@ object Day01 {
         val starts: MutableList<Int> = mutableListOf(50)
 
         return rotations.sumOf {
-            val (end, clicks) = it.clicks(starts.last(), 100)
+            val start = starts.last();
 
-            starts.add(end)
+            starts.add(
+                it.execute(start, MAX_DIAL_COUNT)
+            )
 
-            clicks
+            it.clicks(start, MAX_DIAL_COUNT)
         }
     }
 }
