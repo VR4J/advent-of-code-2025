@@ -6,7 +6,7 @@ import kotlin.time.measureTime
 
 object Day01 {
 
-    val MAX_DIAL_COUNT: Int = 100
+    const val MAX_DIAL_COUNT: Int = 100
 
     data class DialRotation(val amount: Int) {
         companion object {
