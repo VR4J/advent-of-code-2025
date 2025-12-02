@@ -5,3 +5,4 @@ Written in [Kotlin](https://kotlinlang.org/).
 
 ### Quick navigation:
 * Day 01 ([source](./src/main/kotlin/be/vreijsenj/aoc/days/Day01.kt), [test](./src/test/groovy/be/vreijsenj/aoc/days/Day01Test.groovy))
+* Day 02 ([source](./src/main/kotlin/be/vreijsenj/aoc/days/Day02.kt), [test](./src/test/groovy/be/vreijsenj/aoc/days/Day02Test.groovy))
