@@ -21,24 +21,19 @@ object Day02 {
         println("Took $elapsed")
     }
 
-    fun runPartOne(input: String): Long {
+    fun runPartOne(input: String): Long {    
         val ranges: List<LongRange> = input
             .split(",")
             .map {
                 val (start, end) = it.split("-")
                 LongRange(start.toLong(), end.toLong())
             }
-
-        return ranges
-            .flatMap { range ->
-                range
-                    .filter {
-                        val value = it.toString()
-                        val first = value.take(value.length / 2)
-                        val second = value.substring(value.length / 2)
-
-                        first == second
-                    }
+            
+       return ranges
+            .flatMap { range -> 
+                range.filter { 
+                    isRepetitiveChunk(it) { index, id -> id.length % 2 == 0 && index == (id.length / 2) - 1} 
+                }
             }
             .sum()
     }
@@ -50,26 +45,29 @@ object Day02 {
                 val (start, end) = it.split("-")
                 LongRange(start.toLong(), end.toLong())
             }
-
+    
         return ranges
-            .flatMap { range ->
-                range
-                    .filter { number ->
-                        val id = number.toString()
-
-                        val result = id.indices
-                            .filter { it < id.length - 1 }
-                            .map { it + 1 }
-                            .mapNotNull { chunk ->
-                                val value: String = id.take(chunk)
-                                val chunks = id.chunked(chunk)
-
-                                if(chunks.all { it == value }) id else null
-                            }
-
-                        result.isNotEmpty()
-                    }
+            .flatMap { range -> 
+                range.filter { 
+                    isRepetitiveChunk(it) { index, id -> index < id.length / 2 } 
+                }
             }
             .sum()
+    }
+
+
+    fun isRepetitiveChunk(number: Long, isPossibleChunk: (Int, String) -> (Boolean)): Boolean {
+        val id = number.toString()
+        
+    	return id.indices
+            .filter { isPossibleChunk(it, id) }
+            .map { it + 1 }
+            .filter { chunk ->
+                val value: String = id.take(chunk)
+                val chunks = id.chunked(chunk)
+    
+                chunks.all { it == value }
+            }
+            .isNotEmpty()
     }
 }
