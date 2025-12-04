@@ -38,7 +38,7 @@ object Day03 {
             val output: MutableList<Char> = mutableListOf()
 
             repeat(digits) { iteration ->
-                // Every iteration we have to make sure we have enough numbers left to make the 12 digits.
+                // Every iteration we have to make sure we have enough numbers left to make the amount of digits.
                 val limit = (bank.size - 1) - (digits - 1 + position - iteration) + position
                 val (index, value) = getHighestBattery(bank, position, limit)
 
