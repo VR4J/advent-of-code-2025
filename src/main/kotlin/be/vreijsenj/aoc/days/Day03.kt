@@ -45,11 +45,11 @@ object Day03 {
             repeat(12) { iteration ->
                 // Every iteration we have to make sure we have enough numbers left to make the 12 digits.
                 val limit = (bank.size - 1) - (11 + position - iteration) + position
-                val (pos, max) = getHighestBattery(bank, position, limit)
+                val (index, value) = getHighestBattery(bank, position, limit)
 
-                position = pos + 1
+                position = index + 1
 
-                output.add(max)
+                output.add(value)
             }
 
             output.joinToString("").toLong()
