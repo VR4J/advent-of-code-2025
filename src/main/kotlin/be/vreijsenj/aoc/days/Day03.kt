@@ -20,31 +20,26 @@ object Day03 {
         println("Took $elapsed")
     }
 
-    fun runPartOne(input: List<String>): Int {
+    fun runPartOne(input: List<String>): Long {
         val banks: List<CharArray> = input.map { it.toCharArray() }
 
-        return banks.sumOf {
-            val max = it.filterIndexed { pos, _ -> pos < it.size - 1 }.maxBy { it.code }
-            val index = it.indexOf(max);
-
-            val second = it
-                .filterIndexed { pos, _ -> pos > index }
-                .maxBy { it.code }
-
-            "$max$second".toInt();
-        }
+        return getMaxJoltage(banks, 2)
     }
 
     fun runPartTwo(input: List<String>): Long {
         val banks: List<CharArray> = input.map { it.toCharArray() }
 
+        return getMaxJoltage(banks, 12)
+    }
+
+    fun getMaxJoltage(banks: List<CharArray>, digits: Int): Long {
         return banks.sumOf { bank ->
             var position: Int = 0
             val output: MutableList<Char> = mutableListOf()
 
-            repeat(12) { iteration ->
+            repeat(digits) { iteration ->
                 // Every iteration we have to make sure we have enough numbers left to make the 12 digits.
-                val limit = (bank.size - 1) - (11 + position - iteration) + position
+                val limit = (bank.size - 1) - (digits - 1 + position - iteration) + position
                 val (index, value) = getHighestBattery(bank, position, limit)
 
                 position = index + 1
