@@ -8,3 +8,4 @@ Written in [Kotlin](https://kotlinlang.org/).
 * Day 02 ([source](./src/main/kotlin/be/vreijsenj/aoc/days/Day02.kt), [test](./src/test/groovy/be/vreijsenj/aoc/days/Day02Test.groovy))
 * Day 03 ([source](./src/main/kotlin/be/vreijsenj/aoc/days/Day03.kt), [test](./src/test/groovy/be/vreijsenj/aoc/days/Day03Test.groovy))
 * Day 04 ([source](./src/main/kotlin/be/vreijsenj/aoc/days/Day04.kt), [test](./src/test/groovy/be/vreijsenj/aoc/days/Day04Test.groovy))
+* Day 05 ([source](./src/main/kotlin/be/vreijsenj/aoc/days/Day05.kt), [test](./src/test/groovy/be/vreijsenj/aoc/days/Day05Test.groovy))
