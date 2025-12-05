@@ -55,32 +55,33 @@ object Day05 {
     fun runPartTwo(input: String): Long {
         val (fresh, ids) = parse(input)
 
-        val sorted: List<LongRange> = fresh.sortedBy { it.first }
+        val sorted: MutableList<LongRange> = fresh
+            .sortedBy { it.first }
+            .toMutableList()
+
         val merged: MutableList<LongRange> = mutableListOf(
-            sorted.first()
+            sorted.removeFirst()
         )
 
-        sorted
-            .filter { it !in merged }
-            .forEach { range ->
-                val last = merged.last()
+        sorted.forEach { range ->
+            val last = merged.last()
 
-                val start = last.first
-                val end = last.last;
+            val start = last.first
+            val end = last.last;
 
-                // Add the range if it does not intersect with any previous ranges
-                if(end < range.first) {
-                    merged.add(range)
-                } else {
-                    // Extend the range if it intersects
-                    val extended = start.rangeTo(
-                        max(end, range.last)
-                    )
+            // Add the range if it does not intersect with any previous ranges
+            if(end < range.first) {
+                merged.add(range)
+            } else {
+                // Extend the range if it intersects
+                val extended = start.rangeTo(
+                    max(end, range.last)
+                )
 
-                    // Replace last range with the extended range
-                    merged[merged.size -1] = extended
-                }
+                // Replace last range with the extended range
+                merged[merged.size -1] = extended
             }
+        }
 
         return merged.sumOf { it.last - it.first + 1 };
     }
