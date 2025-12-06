@@ -36,7 +36,29 @@ object Day06 {
         }
     }
 
-    fun getMathProblems(input: List<String>): List<MathProblem> {
+    /**
+     * By parsing the last line of the input, which contains all the operators, we know the range of each column.
+     *
+     *     123 328  51 64
+     *      45 64  387 23
+     *       6 98  215 314
+     * --> *   +   *   +
+     *     ^-^ ^-^ ^-^ ^-^
+     *     0-2 4-6 6-8 8-10
+     *
+     * By iterating over the ranges for each line, we can create a column for our MathProblem.
+     * On each column, replace the 'missing' values with 0s to make the calculations easier.
+     *
+     * MathProblem(operator = "*", values = ["123", "045", "006"])
+     * MathProblem(operator = "+", values = ["328", "640", "980"])
+     * MathProblem(operator = "*", values = ["051", "387", "215"])
+     * MathProblem(operator = "+", values = ["064", "023", "314"])
+     *
+     * Part 1; we can simply remove all '0's and complete the calculation with the operator.
+     * Part 2; we can simply take the numbers by index (as the 0's make sure all numbers are equal in length),
+     *         then ignore the 0's when joining them back together.
+     */
+    fun parse(input: List<String>): List<MathProblem> {
         val pattern = "([*+])(\\s+)".toRegex()
         val operations = input.last()
 
@@ -69,7 +91,7 @@ object Day06 {
     }
 
     fun runPartOne(input: List<String>): Long {
-        val problems = getMathProblems(input);
+        val problems = parse(input);
 
         return problems.sumOf { problem ->
             problem.solve { values ->
@@ -82,7 +104,7 @@ object Day06 {
     }
 
     fun runPartTwo(input: List<String>): Long {
-        val problems = getMathProblems(input).reversed();
+        val problems = parse(input).reversed();
 
         return problems.sumOf { problem ->
             problem.solve { values ->
