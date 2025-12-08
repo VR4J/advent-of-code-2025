@@ -2,7 +2,7 @@ package be.vreijsenj.aoc.days
 
 import spock.lang.Specification
 
-class Day06Test  extends Specification {
+class Day06Test extends Specification {
 
     def "returns the grand total of the cephalopods math homework"() {
         given: "the example puzzle input"

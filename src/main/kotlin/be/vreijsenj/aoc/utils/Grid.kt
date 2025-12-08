@@ -29,7 +29,7 @@ open class Grid(
         }
     }
 
-    operator fun Grid.contains(point: Point): Boolean {
+    operator fun contains(point: Point): Boolean {
         return point.x in xMin..xMax && point.y in yMin..yMax
     }
 

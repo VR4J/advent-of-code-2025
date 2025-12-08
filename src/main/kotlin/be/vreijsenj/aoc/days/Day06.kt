@@ -55,7 +55,7 @@ object Day06 {
      * MathProblem(operator = "+", values = ["064", "023", "314"])
      *
      * Part 1; we can simply remove all '0's and complete the calculation with the operator.
-     * Part 2; we can simply take the numbers by index (as the 0's make sure all numbers are equal in length),
+     * Part 2; we can simply take the numbers by same index (as the 0's make sure all numbers are equal in length),
      *         then ignore the 0's when joining them back together.
      */
     fun parse(input: List<String>): List<MathProblem> {
