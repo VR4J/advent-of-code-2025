@@ -1,6 +1,6 @@
 package be.vreijsenj.aoc.utils
 
-data class Point(val x: Int, val y: Int) {
+data class Point(val x: Long, val y: Long) {
 
     fun top() = Point(x, y - 1)
     fun topRight() = Point(x + 1, y - 1)
@@ -13,7 +13,7 @@ data class Point(val x: Int, val y: Int) {
     fun bottomRight() = Point(x + 1, y + 1)
     fun bottomLeft() = Point(x - 1, y + 1)
 
-    fun relative(xMax: Int, yMax: Int): Point {
+    fun relative(xMax: Long, yMax: Long): Point {
         return Point(
             (x).mod(xMax + 1),
             (y).mod(yMax + 1)

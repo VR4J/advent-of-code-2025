@@ -2,14 +2,14 @@ package be.vreijsenj.aoc.utils
 
 open class Grid(
     open val points: List<Point>,
-    open val xMin: Int = points.minOf { it.x }, val xMax: Int = points.maxOf { it.x },
-    open val yMin: Int = points.minOf { it.y }, val yMax: Int = points.maxOf { it.y }
+    open val xMin: Long = points.minOf { it.x }, val xMax: Long = points.maxOf { it.x },
+    open val yMin: Long = points.minOf { it.y }, val yMax: Long = points.maxOf { it.y }
 ) {
 
     companion object {
 
         @JvmStatic
-        fun parse(xMax: Int, yMax: Int, xMin: Int = 0, yMin: Int = 0): Grid {
+        fun parse(xMax: Long, yMax: Long, xMin: Long = 0, yMin: Long = 0): Grid {
             return Grid(emptyList(), xMin, xMax, yMin, yMax)
         }
 
@@ -17,13 +17,13 @@ open class Grid(
             return rasterize(input) { x, y, _ -> Point(x, y) }
         }
 
-        fun <T> rasterize(input: List<String>, transformer: (Int, Int, Char) -> T): List<T> {
+        fun <T> rasterize(input: List<String>, transformer: (Long, Long, Char) -> T): List<T> {
             val rows = input.map { it.toCharArray() }
 
             return rows.first().indices
                 .flatMap { xIndex ->
                     rows.mapIndexed { yIndex, row ->
-                        transformer(xIndex, yIndex, row[xIndex])
+                        transformer(xIndex.toLong(), yIndex.toLong(), row[xIndex])
                     }
                 }
         }
